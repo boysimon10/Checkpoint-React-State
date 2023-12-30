@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
 
 class App extends Component {
 constructor(props) {
@@ -7,9 +9,9 @@ constructor(props) {
         show: false,
         timeElapsed: 0,
         person: {
-        fullName: 'John Doe',
-        bio: 'Web Developer',
-        imgSrc: 'https://via.placeholder.com/150',
+        fullName: 'Jules Ndiaye',
+        bio: `jules Ndiaye est un développeur web Full Stack passionné par la création d'applications innovantes et conviviales.`,
+        imgSrc: 'https://media.istockphoto.com/id/1075599562/photo/programmer-working-with-program-code.jpg?s=612x612&w=0&k=20&c=n3Vw5SMbMCWW1YGG6lnTfrwndNQ8B_R4Vw-BN7LkqpA=',
         profession: 'Full Stack Developer'
         }
     };
@@ -32,17 +34,19 @@ toggleShow = () => {
 
 render() {
     return (
-        <div>
-        <button onClick={this.toggleShow}>
+        <div style={{}}>
+        <Button onClick={this.toggleShow} variant="dark">
             {this.state.show ? 'Hide' : 'Show'} Details
-        </button>
+        </Button>
         {this.state.show && (
-            <div>
-                <h1>{this.state.person.fullName}</h1>
-                <h2>{this.state.person.profession}</h2>
-                <img src={this.state.person.imgSrc} alt={this.state.person.fullName} />
-                <p>{this.state.person.bio}</p>
-            </div>
+            <Card style={{ width: '18rem' }}>
+                <Card.Img variant="top" src={this.state.person.imgSrc} alt={this.state.person.fullName} />
+                <Card.Body>
+                    <Card.Title>{this.state.person.fullName}</Card.Title>
+                    <Card.Subtitle className="mb-2 text-muted">{this.state.person.profession}</Card.Subtitle>
+                    <Card.Text>{this.state.person.bio}</Card.Text>
+                </Card.Body>
+            </Card>
         )}
         <p>Temps: {this.state.timeElapsed} secondes</p>
     </div>
